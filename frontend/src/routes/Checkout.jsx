@@ -1,7 +1,7 @@
-import {useSelector} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
 import {Link} from "react-router-dom";
-import {CheckoutItem} from "../components/CheckoutItem";
-import {CheckoutInfoPanel} from "../components/CheckoutInfoPanel";
+import {createOrderApi} from "../api/createOrderApi";
+import {checkOut} from "../basketSlice";
 
 export const Checkout = () => {
     const basket = useSelector(state => state.basket.value)

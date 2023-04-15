@@ -5,7 +5,7 @@ export const CheckoutItem = ({_id, name, brand, price, img}) => {
     return (
         <div className={'flex'}>
             <div className={'p-6 text-white flex justify-center'}>
-                <img width={'140px'} src={image} alt={'product'}/>
+                <img width={'144px'} src={image} alt={'product'}/>
                 <div className={'grid items-center justify-items-center p-4'}>
                     <Link to={`/products/${_id}`}>
                         {brand + " " + name}
