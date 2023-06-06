@@ -1,6 +1,6 @@
 FROM node:16 as builder
 COPY . .
-RUN npm i
+RUN npm i --force
 RUN npm run build
 
 
