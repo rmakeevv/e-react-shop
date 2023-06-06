@@ -1,6 +1,6 @@
 FROM node:16-alpine as builder
 COPY . .
-RUN npm ci
+RUN npm i
 RUN npm run build
 
 
