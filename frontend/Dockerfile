@@ -1,4 +1,4 @@
-FROM node:18 as builder
+FROM node:16 as builder
 COPY . .
 RUN npm i
 RUN npm run build
