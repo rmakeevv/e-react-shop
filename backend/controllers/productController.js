@@ -1,6 +1,5 @@
-const client = require("../db");
+const {db} = require("../db");
 const {ObjectId} = require("mongodb");
-const db = client.db("online-store");
 const myColl = db.collection("products");
 async function addProduct(req, res) {
     try {

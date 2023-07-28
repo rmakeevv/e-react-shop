@@ -1,6 +1,6 @@
 const express = require('express');
 const app = express();
-const client = require('./db')
+const {client} = require('./db')
 const bodyParser = require('body-parser')
 const router = require('./routes/router')
 const cors = require('cors')

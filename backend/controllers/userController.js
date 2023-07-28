@@ -1,5 +1,4 @@
-const client = require("../db");
-const db = client.db("online-store");
+const {db} = require("../db");
 const myColl = db.collection("users");
 const jwt = require('jsonwebtoken')
 

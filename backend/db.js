@@ -5,8 +5,9 @@ const client = new MongoClient(uri,
         {
             useNewUrlParser: true,
             useUnifiedTopology: true,
-            serverApi: ServerApiVersion.v1
+            serverApi: ServerApiVersion.v1,
         }
     );
+const db = client.db('online-store')
 
-module.exports = client
+module.exports = {db, client}

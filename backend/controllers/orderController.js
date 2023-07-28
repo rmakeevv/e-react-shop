@@ -1,5 +1,4 @@
-const client = require("../db");
-const db = client.db("online-store");
+const {db} = require('../db')
 const myColl = db.collection("orders");
 const jwt = require('jsonwebtoken')
 async function createOrder(req, res) {
