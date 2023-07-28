@@ -1,6 +1,6 @@
-// @ts-ignore
 import pc from '../assets/images/products/laptops/img.png'
 import {Link} from "react-router-dom";
+import React from 'react';
 export const Main = () => {
     return (
         <div className={'text-white p-8'} style={{background: '#1a1a1a'}}>

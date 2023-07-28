@@ -1,5 +1,16 @@
 {
   "include": [
-    "resources/**/*.ts",
+    "src/**/*"
   ],
+  "compilerOptions": {
+    "noImplicitAny": true,
+    "removeComments": true,
+    "strictNullChecks": true,
+    "rootDir": "src",
+    "baseUrl": "src",
+    "jsx": "react",
+    "module": "CommonJS",
+    "target": "ES6",
+    "allowSyntheticDefaultImports": true
+  }
 }

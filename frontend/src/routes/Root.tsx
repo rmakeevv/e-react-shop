@@ -1,8 +1,8 @@
 import {Outlet, useLoaderData, useNavigation} from "react-router-dom";
-import {Header} from "../components/Header";
-import {useEffect} from "react";
+import {Header} from 'components';
+import React, {useEffect} from "react";
 import {useDispatch} from "react-redux";
-import {logIn} from "../authSlice";
+import {logIn} from "store/authSlice";
 export const loader = async () => {
     const token = localStorage.getItem('token') || null
     const userId = localStorage.getItem('userId') || null

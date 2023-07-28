@@ -1,7 +1,11 @@
-import {getImage} from "../services/getImage";
+import {getImage} from 'services/getImage';
 import {Link} from "react-router-dom";
+import React from 'react';
 
-export const OrderItem = ({img, name, brand, price, _id}) => {
+type OrderItemValues = 'img' | 'name' | 'brand' | '_id' | 'price'
+type OrderItemProps = Record<OrderItemValues, string>
+
+export const OrderItem = ({img, name, brand, price, _id}: OrderItemProps) => {
     const image = getImage(img)
     return (
         <div className={'md:flex justify-between items-center p-4'}>

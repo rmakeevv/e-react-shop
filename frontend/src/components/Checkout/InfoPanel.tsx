@@ -1,13 +1,15 @@
-import {useDispatch, useSelector} from "react-redux";
-import {createOrderApi} from "../api/createOrderApi";
-import {checkOut} from "../basketSlice";
-import {getDate} from "../services/getDate";
+import {UseAppSelector} from 'hooks/UseAppSelector';
+import {useDispatch} from "react-redux";
+import {createOrderApi} from 'api/createOrderApi';
+import {checkOut} from "store/basketSlice";
+import {getDate} from 'services/getDate';
+import React from 'react';
 
 export const CheckoutInfoPanel = () => {
-    // @ts-ignore
-    const basket = useSelector(state => state.basket.value)
-    // @ts-ignore
-    const auth = useSelector(state => state.auth.value)
+
+    const basket = UseAppSelector(state => state.basket.value)
+
+    const auth = UseAppSelector(state => state.auth.value)
     const dispatch = useDispatch()
     const total = basket.items.reduce((accumulator, currentValue) => accumulator + currentValue.price, 0)
     const createOrder = () => {
@@ -17,7 +19,7 @@ export const CheckoutInfoPanel = () => {
             userId: auth.userId
         }
         createOrderApi(order)
-            .then( data => data)
+            .then( (data: any) => data)
         dispatch(checkOut())
     }
 

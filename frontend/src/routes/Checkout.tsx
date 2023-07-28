@@ -1,11 +1,10 @@
-import {useSelector} from "react-redux";
+import {UseAppSelector} from 'hooks';
 import {Link} from "react-router-dom";
-import {CheckoutItem} from "../components/CheckoutItem";
-import {CheckoutInfoPanel} from "../components/CheckoutInfoPanel";
+import {CheckoutItem, CheckoutInfoPanel} from 'components';
+import React from 'react';
 
 export const Checkout = () => {
-    // @ts-ignore
-    const basket = useSelector(state => state.basket.value)
+    const basket = UseAppSelector(state => state.basket.value)
     return basket.isOrdered
         ? (
             <div className={'container mx-auto text-white p-8 flex flex-col items-center'}>

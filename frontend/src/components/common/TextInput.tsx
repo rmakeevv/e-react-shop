@@ -1,4 +1,9 @@
-export const TextInput = ({label, name, placeholder}) => {
+import React from 'react';
+
+type TextInputKeys = 'label' | 'name' | 'placeholder'
+type TextInputProps = Record<TextInputKeys, string>
+
+export const TextInput = ({label, name, placeholder}: TextInputProps) => {
     return (
         <label className={'text-white md:mx-3'}>
             {label}

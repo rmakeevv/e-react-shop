@@ -1,22 +1,22 @@
-import * as React from 'react';
-import * as ReactDOM from 'react-dom/client';
+import React from 'react';
+import ReactDOM from 'react-dom/client';
 import {Root, loader as rootLoader} from "./routes/Root";
-import {Error} from "./Error";
+import {Error} from 'Error';
 import {createBrowserRouter,RouterProvider} from "react-router-dom";
-import {Products} from "./routes/Products";
-import {getProducts} from "./api/getProducts";
+import {Products} from 'routes/Products';
+import {getProducts} from 'api/getProducts';
 import './assets/styles/index.css';
-import {Main} from "./routes/Main";
-import {Product} from "./routes/Product";
-import {getOneProduct} from "./api/getOneProduct";
-import {Auth} from "./routes/Auth";
-import {userCreate} from "./api/userCreate";
-import {Profile, loader} from "./routes/Profile";
+import {Main} from 'routes/Main';
+import {Product} from 'routes/Product';
+import {getOneProduct} from 'api/getOneProduct';
+import {Auth} from 'routes/Auth';
+import {userCreate} from 'api/userCreate';
+import {Profile, loader} from 'routes/Profile';
 import {Provider} from "react-redux";
 import store from "./store";
-import {Basket} from "./routes/Basket";
+import {Basket} from 'routes/Basket';
 import {Orders, loader as orderLoader} from "./routes/Orders";
-import {Checkout} from "./routes/Checkout";
+import {Checkout} from 'routes/Checkout';
 
 const router = createBrowserRouter([
     {
@@ -66,7 +66,7 @@ const router = createBrowserRouter([
     },
 ])
 
-const root = ReactDOM.createRoot(document.getElementById('root'));
+const root = ReactDOM.createRoot(document.getElementById('root') as HTMLElement);
 root.render(
     <Provider store={store}>
         <RouterProvider router={router}/>

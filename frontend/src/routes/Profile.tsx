@@ -1,18 +1,18 @@
-// @ts-ignore
-import userIcon from '../assets/images/UI/user-circle-icon-png.png'
+import userIcon from 'assets/images/UI/user-circle-icon-png.png'
+import {UseAppSelector} from 'hooks';
 import {Link, redirect} from "react-router-dom";
-import {Button} from "../components/Button";
-import {useDispatch, useSelector} from "react-redux";
-import {logOut} from "../authSlice";
-import {deleteItems} from "../basketSlice";
+import {Button} from 'components';
+import {useDispatch} from "react-redux";
+import {logOut} from 'store/authSlice';
+import {deleteItems} from 'store/basketSlice';
+import React from 'react';
 export const loader = () => {
     if (!localStorage.getItem('token')) {
         return redirect('/auth')
     } else return null
 }
 export const Profile = () => {
-    // @ts-ignore
-    const auth = useSelector(state => state.auth.value)
+    const auth = UseAppSelector(state => state.auth.value)
     const dispatch = useDispatch()
     const pageLogOut = () => {
         localStorage.clear()

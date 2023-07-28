@@ -1,5 +1,7 @@
 import { useActionData} from "react-router-dom";
-import {AuthForm} from "../components/AuthForm";
+import {AuthForm} from 'components';
+import React from 'react';
+
 export const Auth = () => {
     const errors: any = useActionData()
     return (

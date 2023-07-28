@@ -1,5 +1,8 @@
 import {redirect} from "react-router-dom";
-export const createOrderApi = async order => {
+
+type func = (order: unknown) => any;
+
+export const createOrderApi:func = async order => {
     const data = await fetch( process.env.REACT_APP_API_URI+'/orders/', {
         method: 'POST',
         headers: {

@@ -1,10 +1,14 @@
 import {Link} from "react-router-dom";
-import {Button} from "./Button";
-import {removeItem} from "../basketSlice";
+import {Button} from "components";
+import {removeItem} from "store/basketSlice";
 import {useDispatch} from "react-redux";
-import {getImage} from "../services/getImage";
+import {getImage} from 'services/getImage';
+import React from "react";
 
-export const BasketItem = ({ _id, name, brand, price, basketItemId, img}) => {
+type BasketItemValues = '_id' | 'name' | 'brand' | 'price' | 'img' | 'basketItemId'
+type props = Record<BasketItemValues, string>
+
+export const BasketItem = ({ _id, name, brand, price, basketItemId, img}: props) => {
     const image = getImage(img)
     const dispatch = useDispatch()
     return (

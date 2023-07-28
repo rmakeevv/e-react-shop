@@ -1,4 +1,10 @@
-export const getProducts = async({request}) => {
+type RequestSpec = {
+  request: {
+    url: URL | string;
+  }
+}
+
+export const getProducts = async({request}: RequestSpec) => {
     const url = new URL(request.url)
     const category = url.searchParams.get('category')
     const order = url.searchParams.get('order')

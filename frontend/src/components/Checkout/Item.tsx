@@ -1,7 +1,11 @@
+import React from "react";
 import {Link} from "react-router-dom";
-import {getImage} from "../services/getImage";
+import {getImage} from 'services/getImage';
 
-export const CheckoutItem = ({_id, name, brand, price, img}) => {
+type CheckoutItemValues = '_id' | 'name' | 'brand' | 'price' | 'img'
+type Props = Record<CheckoutItemValues, string>
+
+export const CheckoutItem = ({_id, name, brand, price, img}: Props) => {
     const image = getImage(img)
     return (
         <div className={'flex'}>

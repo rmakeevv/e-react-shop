@@ -1,9 +1,15 @@
 import {Link} from "react-router-dom";
-import {Button} from "./Button";
-// @ts-ignore
+import {Button} from "./common";
 import availableImg from '../assets/images/UI/delivery.png'
-import {getImage} from "../services/getImage";
-export const ProductItem = ({name, brand, price, _id, action, img}) => {
+import {getImage} from 'services/getImage';
+import React from 'react';
+
+type ButtonAction = {action: () => void};
+type ProductItemKeys = "name" | "brand" | "price" | "_id" | "img"
+type ProductItemStringProps = Record<ProductItemKeys, string>
+type ProductItemProps = ProductItemStringProps & ButtonAction
+
+export const ProductItem = ({name, brand, price, _id, img, action}: ProductItemProps ) => {
     const picture = getImage(img)
     return (
         <div className={'md:flex-row flex-col flex gap-4 bg-neutral-800 p-8 items-center justify-center md:rounded-md'}>
