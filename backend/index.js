@@ -14,6 +14,6 @@ async function start() {
     await client.connect()
         .then(() => console.log('db connected'))
         .catch(e => console.dir(e))
-    app.listen(process.env.PORT)
+    app.listen(5001)
 }
 start().then(() => console.log('server is running')).catch(e => console.log(e.message))

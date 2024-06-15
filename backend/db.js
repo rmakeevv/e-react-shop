@@ -1,5 +1,6 @@
 const { MongoClient, ServerApiVersion } = require('mongodb');
-const password = encodeURIComponent("EFihZ76nDYEaqMQy")
+const dbpass = require('./config');
+const password = encodeURIComponent(dbpass)
 const uri = `mongodb+srv://rmakeevv:${password}@cluster0.g2wn3u9.mongodb.net/?retryWrites=true&w=majority`;
 const client = new MongoClient(uri,
         {
