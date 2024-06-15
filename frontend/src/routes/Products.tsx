@@ -4,8 +4,10 @@ import {SortForm} from 'components/SortForm';
 import {useDispatch} from "react-redux";
 import {addItem} from "store/basketSlice";
 import React from 'react';
+import {AppDispatch} from "../hooks";
+
 export const Products = () => {
-    const dispatch = useDispatch()
+    const dispatch: AppDispatch = useDispatch()
     const data = useLoaderData()
     return  (
             <div className={'flex flex-col container mx-auto md:px-12'}>

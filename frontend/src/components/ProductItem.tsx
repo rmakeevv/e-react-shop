@@ -3,11 +3,7 @@ import {Button} from "./common";
 import availableImg from '../assets/images/UI/delivery.png'
 import {getImage} from 'services/getImage';
 import React from 'react';
-
-type ButtonAction = {action: () => void};
-type ProductItemKeys = "name" | "brand" | "price" | "_id" | "img"
-type ProductItemStringProps = Record<ProductItemKeys, string>
-type ProductItemProps = ProductItemStringProps & ButtonAction
+import {ProductItemProps} from "./index.types";
 
 export const ProductItem = ({name, brand, price, _id, img, action}: ProductItemProps ) => {
     const picture = getImage(img)
