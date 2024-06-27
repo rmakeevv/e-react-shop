@@ -1,20 +1,49 @@
-import {UseAppSelector} from 'hooks/UseAppSelector';
-import {Link} from "react-router-dom";
+import { UseAppSelector } from 'hooks/UseAppSelector';
+import { Link } from 'react-router-dom';
 import React from 'react';
+import { appRoutes } from '../../model/routes';
+import { selectBasketItems, selectBasketTotal } from '../../store/basketSlice';
+import { selectIsLogged } from '../../store/authSlice';
+
+const renderLinkToCheckOut = () => {
+    return (
+        <Link
+            to={appRoutes.checkout}
+            className={'bg-neutral-200 text-black px-3 py-1 rounded-md'}
+        >
+            Перейти к оформлению
+        </Link>
+    );
+};
+
+const renderLinkToAuth = () => {
+    return (
+        <Link
+            to={appRoutes.auth}
+            className={'bg-neutral-700 py-3 rounded-md px-6'}
+        >
+            Войти в профиль
+        </Link>
+    );
+};
 
 export const BasketInfoPanel = () => {
-    const basket = UseAppSelector(state => state.basket.value)
-    const total = basket.items.reduce((accumulator, currentValue) => accumulator + currentValue.price, 0)
-    const auth = UseAppSelector(state => state.auth.value)
+    const basketItems = UseAppSelector(selectBasketItems);
+    const total = UseAppSelector(selectBasketTotal);
+
+    const isLogged = UseAppSelector(selectIsLogged);
     return (
-        <div className={'p-6 grid gap-4 bg-neutral-800 rounded-md'} style={{border: "1px solid rgb(84 84 84 / 48%)"}}>
-            Сумма заказа: {total}
-            <br/>
-            Выбрано товаров: {basket.items.length}
-            { auth.isLogged
-                ? <Link to={'/checkout'} className={'bg-neutral-200 text-black px-6 py-3 rounded-md'}>Перейти к оформлению</Link>
-                : <Link to={'/auth'} className={'bg-neutral-700 py-3 rounded-md px-6'}>Войти в профиль</Link>
+        <div
+            id={'basket-info-panel'}
+            className={
+                'p-6 flex justify-between flex-wrap items-start gap-4 bg-neutral-800 rounded-md'
             }
+            style={{ border: '1px solid rgb(84 84 84 / 48%)' }}
+        >
+            Сумма заказа: {total}
+            <br />
+            Выбрано товаров: {basketItems.length}
+            {isLogged ? renderLinkToCheckOut() : renderLinkToAuth()}
         </div>
     );
 };

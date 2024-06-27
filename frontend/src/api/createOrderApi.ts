@@ -1,17 +1,24 @@
-import {redirect} from "react-router-dom";
+import { redirect } from 'react-router-dom';
+import { IBasketItem } from '../model/basket';
 
-type func = (order: unknown) => any;
+interface IOrder {
+    items: IBasketItem[];
+    date: string;
+    userId: string;
+}
 
-export const createOrderApi:func = async order => {
-    const data = await fetch( process.env.REACT_APP_API_URI+'/orders/', {
+type func = (order: IOrder) => any;
+
+export const createOrderApi: func = async (order) => {
+    const data = await fetch(process.env.REACT_APP_API_URI + '/orders/', {
         method: 'POST',
         headers: {
-            'Content-Type': 'application/json;charset=utf-8'
+            'Content-Type': 'application/json;charset=utf-8',
         },
-        body: JSON.stringify(order)
+        body: JSON.stringify(order),
     })
-        .then(res => res.json())
-        .then(data => data)
-        .catch(err => console.log(err.message))
-    return data ? redirect(`/profile`) : null
-}
+        .then((res) => res.json())
+        .then((data) => data)
+        .catch((err) => console.log(err.message));
+    return data ? redirect(`/profile`) : null;
+};

@@ -4,6 +4,7 @@ import logo from "assets/images/logo/gear-ico.png";
 import userIcon from 'assets/images/UI/free-icon-user-149071.png'
 import userCart from 'assets/images/UI/free-icon-cart-8415432.png'
 import React from 'react';
+import {appRoutes} from "../../model/routes";
 
 export const Header = () => {
     const auth = UseAppSelector(state => state.auth.value)
@@ -13,10 +14,10 @@ export const Header = () => {
             <div className={'container flex items-center justify-between mx-auto md:px-12'}>
                 <div className={'flex items-center h-full py-2 px-8'}>
                     <Link className={'m-1 font-bold md:block hidden'} to={'/'}>Plugged.In</Link>
-                    <Link to={'/'}>
+                    <Link to={appRoutes.home}>
                         <img src={logo} alt={'logo'} className={"w-8"}/>
                     </Link>
-                    <Link to={'products'} className={'px-8 font-medium'}>Каталог</Link>
+                    <Link to={appRoutes.products} className={'px-8 font-medium'}>Каталог</Link>
                 </div>
                 <div className={'flex items-center'}>
                     <div className={'flex md:p-0 p-1 items-center'}>
@@ -29,10 +30,10 @@ export const Header = () => {
                         </Link>
                         {
                             auth.isLogged
-                                ? <Link to={`/profile/${auth.userId}`} className={'px-4 py-3'}>
+                                ? <Link to={appRoutes.profile + auth.userId} className={'px-4 py-3'}>
                                     <img src={userIcon} alt={'user'} width={'40px'}/>
                                 </Link>
-                                : <Link to={'/auth'} className={'md:px-8 py-3 rounded-md mx-2 text-center flex items-center'}>
+                                : <Link to={appRoutes.auth} className={'md:px-8 py-3 rounded-md mx-2 text-center flex items-center'}>
                                     <img src={userIcon} alt={'user'} width={'40px'}/>
                                     <span className={'p-3 hidden md:block'}>Войти</span>
                                 </Link>

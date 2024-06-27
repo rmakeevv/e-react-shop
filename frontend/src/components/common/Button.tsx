@@ -1,12 +1,32 @@
-import React from "react";
+import React from 'react';
 
-type ButtonProps = {
-    text: string,
-    action?: () => any,
-    type?: "submit"
+interface IButtonProps {
+    text: string;
+    onClick?: () => void;
+    type?: 'submit';
+    className?: string;
 }
-export const Button = ({text, action, type}: ButtonProps) => {
+
+/**
+ * @param className - Перекрывает className от Tailwind.css
+ * @param text - Передайте текст
+ * @param type - Принимает только submit для форм
+ * @param onClick - Принимает любую функцию
+ *
+ * @returns Возвращает стилизованную кнопку
+ */
+
+export const Button = ({ text, onClick, type, className }: IButtonProps) => {
     return (
-        <button type={type} onClick={action} className={'px-6 py-3 bg-emerald-600 text-white rounded-md hover:bg-sky-100 hover:text-black'}>{text}</button>
+        <button
+            type={type}
+            onClick={onClick}
+            className={
+                'px-4 py-2 bg-emerald-600 text-white rounded-md hover:bg-sky-100 hover:text-black ' +
+                className
+            }
+        >
+            {text}
+        </button>
     );
 };

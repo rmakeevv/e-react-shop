@@ -1,31 +1,68 @@
-import { useLoaderData} from "react-router-dom";
-import {ProductItem} from 'components/ProductItem';
-import {SortForm} from 'components/SortForm';
-import {useDispatch} from "react-redux";
-import {addItem} from "store/basketSlice";
-import React from 'react';
-import {AppDispatch} from "../hooks";
+import { ProductItem } from 'components/ProductItem';
+import { SortForm } from 'components/SortForm';
+import { useDispatch } from 'react-redux';
+import { addItem } from 'store/basketSlice';
+import React, { useMemo } from 'react';
+import { AppDispatch } from '../hooks';
+import { useGetAllProductsQuery } from '../store/rtk';
+import { useSearchParams } from 'react-router-dom';
 
 export const Products = () => {
-    const dispatch: AppDispatch = useDispatch()
-    const data = useLoaderData()
-    return  (
-            <div className={'flex flex-col container mx-auto md:px-12'}>
-                <div className={'md:p-8 p-4 md:rounded-xl flex items-center md:flex-row flex-col justify-between'} style={{border: "1px solid rgb(84 84 84 / 48%)"}} >
-                    <h1 className={'md:text-xl text-white text-center'}>{data ? "В наличии "  + 0 + " товар(ов)" : "error"}</h1>
-                    <SortForm/>
-                </div>
-                <div className={'grid md:gap-4 text-white py-2'}>
-                    {
-                        Array.isArray(data)
-                            ? data.map((item, key) => <ProductItem key={key} {...item} action={() => dispatch(addItem(item))}/>)
-                            : (
-                                <div className={'text-white p-4'}>
-                                    <h1>Товары не найдены! Попробуйте позже.</h1>
-                                </div>
-                            )
-                    }
-                </div>
+    const dispatch: AppDispatch = useDispatch();
+
+    let [searchParams, setSearchParams] = useSearchParams();
+
+    const params = useMemo(() => {
+        const initialValue = {
+            category: '',
+            order: '',
+        };
+
+        for (const [key, value] of searchParams.entries()) {
+            if (key === 'category' || key === 'order') {
+                initialValue[key] = value;
+            }
+        }
+
+        return initialValue;
+    }, [searchParams]);
+
+    const { data } = useGetAllProductsQuery(params);
+
+    return (
+        <div
+            id={'products-page'}
+            className={'flex flex-col container mx-auto md:px-8'}
+        >
+            <div
+                id={'products-list-header'}
+                className={
+                    'md:px-4 p-4 md:rounded-xl flex items-center md:flex-row flex-col justify-between'
+                }
+                style={{ border: '1px solid rgb(84 84 84 / 48%)' }}
+            >
+                <h1 className={'md:text-lg text-white text-center'}>
+                    {data
+                        ? 'В наличии ' + data.length + ' товар(ов)'
+                        : 'Ошибка'}
+                </h1>
+                <SortForm />
             </div>
-    )
-}
+            <div className={'grid md:gap-4 text-white py-2'}>
+                {data ? (
+                    data.map((item, key) => (
+                        <ProductItem
+                            key={key}
+                            {...item}
+                            action={() => dispatch(addItem(item))}
+                        />
+                    ))
+                ) : (
+                    <div className={'text-white p-4'}>
+                        <h1>Товары не найдены! Попробуйте позже.</h1>
+                    </div>
+                )}
+            </div>
+        </div>
+    );
+};

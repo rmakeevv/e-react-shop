@@ -1,24 +1,36 @@
-import {getImage} from 'services/getImage';
-import {Link} from "react-router-dom";
+import { getImage } from 'services/getImage';
+import { Link } from 'react-router-dom';
 import React from 'react';
+import { appRoutes } from '../model/routes';
+import { IProduct } from '../model/product';
 
-type OrderItemValues = 'img' | 'name' | 'brand' | '_id' | 'price'
-type OrderItemProps = Record<OrderItemValues, string>
-
-export const OrderItem = ({img, name, brand, price, _id}: OrderItemProps) => {
-    const image = getImage(img)
+const renderLinkToProduct = (_id: string) => {
     return (
-        <div className={'md:flex justify-between items-center p-4'}>
-            <div className={'flex flex-row items-center gap-4'}>
-                <Link to={`/products/${_id}`} className={'bg-neutral-200 p-6 text-black rounded-md'}>
-                    Подробнее
-                </Link>
+        <Link
+            to={appRoutes.products + _id}
+            className={'bg-neutral-200 px-4 py-1 text-black rounded-md'}
+        >
+            Подробнее
+        </Link>
+    );
+};
+
+export const OrderItem = ({ img, name, brand, price, _id }: IProduct) => {
+    const image = getImage(img);
+
+    return (
+        <div
+            id={'order-item'}
+            className={'flex justify-between items-center p-2'}
+        >
+            <div className={'flex flex-row-reverse items-center gap-4'}>
+                {renderLinkToProduct(_id)}
                 <h1>{name}</h1>
                 <span>{brand}</span>
-                <br/>
+                <br />
                 <span>{price}</span>
             </div>
-            <img src={image} width={'200px'} alt={'product'}/>
+            <img src={image} width={'120px'} alt={'product'} />
         </div>
     );
 };
