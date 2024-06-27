@@ -1,5 +1,6 @@
 import { redirect } from 'react-router-dom';
 import { IBasketItem } from '../model/basket';
+import { baseApiUri } from './model';
 
 interface IOrder {
     items: IBasketItem[];
@@ -7,10 +8,10 @@ interface IOrder {
     userId: string;
 }
 
-type func = (order: IOrder) => any;
+type createOrderApiType = (order: IOrder) => Promise<any>;
 
-export const createOrderApi: func = async (order) => {
-    const data = await fetch(process.env.REACT_APP_API_URI + '/orders/', {
+export const createOrderApi: createOrderApiType = async (order) => {
+    const data = await fetch(baseApiUri + '/orders/', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json;charset=utf-8',

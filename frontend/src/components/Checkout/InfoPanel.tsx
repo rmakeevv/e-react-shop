@@ -3,16 +3,19 @@ import { createOrderApi } from 'api/createOrderApi';
 import {
     checkOut,
     selectBasketItems,
+    selectBasketQuantity,
     selectBasketTotal,
 } from 'store/basketSlice';
 import { getDate } from 'services/getDate';
 import React from 'react';
 import { useAppDispatch } from '../../hooks';
 import { selectUserId } from '../../store/authSlice';
+import { Button } from '../common';
+import { useAppSelector } from '../../store';
 
 export const CheckoutInfoPanel = () => {
     const basketItems = UseAppSelector(selectBasketItems);
-
+    const basketQuantity = useAppSelector(selectBasketQuantity);
     const userId = UseAppSelector(selectUserId);
     const dispatch = useAppDispatch();
     const total = UseAppSelector(selectBasketTotal);
@@ -30,15 +33,12 @@ export const CheckoutInfoPanel = () => {
     return (
         <div className={'flex items-center justify-center'}>
             <span> Итого {total}</span>
-            <span className={'m-4'}>
-                Товаров в заказе: {basketItems.length}
-            </span>
-            <button
-                className={'px-6 py-3 bg-neutral-100 rounded-md text-black'}
+            <span className={'m-4'}>Товаров в заказе: {basketQuantity}</span>
+            <Button
+                className={'px-6 py-3 rounded-md text-black'}
                 onClick={createOrder}
-            >
-                Заказать
-            </button>
+                text={'Заказать'}
+            />
         </div>
     );
 };

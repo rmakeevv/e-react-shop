@@ -53,6 +53,9 @@ export const { addItem, removeItem, checkOut, deleteItems } =
 
 export const selectBasketItems = (state: RootState) => state.basket.value.items;
 
+export const selectBasketQuantity = (state: RootState) =>
+    state.basket.value.items.length;
+
 export const selectBasketIsOrdered = (state: RootState) =>
     state.basket.value.isOrdered;
 
