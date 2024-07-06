@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom';
 import { Button } from './common';
 import availableImg from '../assets/images/UI/delivery.png';
-import { getImage } from 'services/getImage';
+import { getImage } from 'utils/getImage';
 import React from 'react';
 import { IProduct } from '../model/product';
 import { appRoutes } from '../model/routes';

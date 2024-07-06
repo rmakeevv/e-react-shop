@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { getImage } from 'services/getImage';
+import { getImage } from 'utils/getImage';
 import { IBasketItem } from '../../model/basket';
 import { appRoutes } from '../../model/routes';
 

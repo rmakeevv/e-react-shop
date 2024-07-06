@@ -1,7 +1,7 @@
 import { Link, useNavigate, useParams } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { addItem } from 'store/basketSlice';
-import { getImage } from 'services/getImage';
+import { getImage } from 'utils/getImage';
 import React from 'react';
 import { useGetProductQuery } from '../store/rtk';
 import { IProduct } from '../model/product';
@@ -28,18 +28,23 @@ export const Product = () => {
     const dispatch = useDispatch();
     const navigate = useNavigate();
     const { id } = useParams();
-    const { data, isSuccess } = useGetProductQuery(id || '');
-    const picture = getImage(data?.img || '');
+    const { data, isSuccess, isFetching } = useGetProductQuery(id || '');
 
     const handleOnClickNavigateBack = () => navigate(-1);
 
     const handleOnClickAddItem = (item: IProduct) => dispatch(addItem(item));
 
-    if (isSuccess) {
+    if (isFetching) return <></>;
+
+    if (isSuccess && data.img) {
         return (
             <div className={'text-slate-200 flex items-stretch justify-center'}>
                 <div className="flex md:flex-row flex-col items-center rounded-md justify-center container p-4">
-                    <img src={picture} alt={'product'} className={'w-64'} />
+                    <img
+                        src={getImage(data.img)}
+                        alt={'product'}
+                        className={'w-64'}
+                    />
                     <div
                         className={
                             'grid items-center rounded-md justify-items-start px-8'

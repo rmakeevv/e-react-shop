@@ -2,7 +2,7 @@ import { Link } from 'react-router-dom';
 import { Button } from 'components';
 import { removeItem } from 'store/basketSlice';
 import { useDispatch } from 'react-redux';
-import { getImage } from 'services/getImage';
+import { getImage } from 'utils/getImage';
 import React from 'react';
 import { IBasketItem } from '../../model/basket';
 import { appRoutes } from '../../model/routes';

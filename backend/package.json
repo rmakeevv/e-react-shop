@@ -6,7 +6,8 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "nodemon index.js",
-    "start": "git clone https://github.com/rmakeevv/mongo-env-store.git && cp ./mongo-env-store/config.js . && sudo rm -R ./mongo-env-store && node index.js"
+    "start": "node index.js",
+    "start:mongo": "git clone https://github.com/rmakeevv/mongo-env-store.git && cp ./mongo-env-store/config.js . && sudo rm -R ./mongo-env-store && node index.js"
   },
   "author": "",
   "license": "ISC",

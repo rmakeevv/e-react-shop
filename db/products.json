@@ -1,0 +1,12 @@
+{
+  "_id": "647f0ca3b00cd2b22e2e4b9b",
+  "name": "Iphone 14 128GB",
+  "brand": "apple",
+  "price": "2222",
+  "category": "phones",
+  "img": "iphone-14.png",
+  "storage": "128GB",
+  "color": "green",
+  "display": "IPS",
+  "resolution": "1334x768"
+}

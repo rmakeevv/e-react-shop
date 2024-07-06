@@ -5,3 +5,11 @@
 html {
     background: #1a1a1a;
 }
+
+/*
+    overrides
+*/
+
+.h-screen {
+    height: 90vh;
+}

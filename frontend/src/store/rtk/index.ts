@@ -18,7 +18,14 @@ export const productsApi = createApi({
                     : `categories/all/asc`,
         }),
         getProduct: builder.query<IProduct, string>({
-            query: (id) => `products/${id}`,
+            query: (_id) => ({
+                method: 'GET',
+                params: { _id },
+                url: 'products/',
+            }),
+            transformResponse: (response: IProduct[]) => {
+                return response[0];
+            },
         }),
     }),
 });

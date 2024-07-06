@@ -61,7 +61,7 @@ export const selectBasketIsOrdered = (state: RootState) =>
 
 export const selectBasketTotal = (state: RootState) =>
     state.basket.value.items.reduce(
-        (accumulator, currentValue) => accumulator + currentValue.price,
+        (accumulator, currentValue) => accumulator + Number(currentValue.price),
         0
     );
 

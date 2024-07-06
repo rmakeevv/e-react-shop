@@ -50,9 +50,15 @@ export const Checkout = () => {
         <div>
             <div className={'container mx-auto p-8 text-white'}>
                 <h1 className={'text-white text-center'}>Ваш заказ</h1>
-                {basketItems.map((item, key) => (
-                    <CheckoutItem key={key} {...item} />
-                ))}
+                <div
+                    className={'flex items-center flex-col'}
+                    style={{ maxHeight: '30rem', overflowY: 'auto' }}
+                >
+                    {basketItems.map((item, key) => (
+                        <CheckoutItem key={key} {...item} />
+                    ))}
+                </div>
+
                 <CheckoutInfoPanel />
             </div>
         </div>

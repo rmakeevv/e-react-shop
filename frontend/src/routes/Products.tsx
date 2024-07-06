@@ -32,16 +32,16 @@ export const Products = () => {
     return (
         <div
             id={'products-page'}
-            className={'flex flex-col container mx-auto md:px-8'}
+            className={'flex flex-col container mx-auto px-4'}
         >
             <div
                 id={'products-list-header'}
                 className={
-                    'md:px-4 p-4 md:rounded-xl flex items-center md:flex-row flex-col justify-between'
+                    'p-2 md:rounded-xl flex items-center md:flex-row justify-between'
                 }
                 style={{ border: '1px solid rgb(84 84 84 / 48%)' }}
             >
-                <h1 className={'md:text-lg text-white text-center'}>
+                <h1 className={'text-white text-center'}>
                     {data
                         ? 'В наличии ' + data.length + ' товар(ов)'
                         : 'Ошибка'}

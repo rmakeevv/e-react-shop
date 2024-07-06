@@ -6,7 +6,7 @@ import {
     selectBasketQuantity,
     selectBasketTotal,
 } from 'store/basketSlice';
-import { getDate } from 'services/getDate';
+import { getDate } from 'utils/getDate';
 import React from 'react';
 import { useAppDispatch } from '../../hooks';
 import { selectUserId } from '../../store/authSlice';

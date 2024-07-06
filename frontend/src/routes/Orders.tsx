@@ -1,6 +1,6 @@
 import { Link, useParams } from 'react-router-dom';
 import { OrderItem } from 'components/OrderItem';
-import React, { useMemo } from 'react';
+import React, { useEffect, useMemo } from 'react';
 import { useGetAllOrdersQuery } from '../store/rtk/orders';
 import { appRoutes } from '../model/routes';
 
@@ -19,12 +19,23 @@ const renderLinkToProductsPage = () => {
 
 export const Orders = () => {
     const { userid } = useParams();
-    const { data: orders = [], isSuccess } = useGetAllOrdersQuery(userid || '');
+    const {
+        data: orders = [],
+        isSuccess,
+        isFetching,
+        refetch,
+    } = useGetAllOrdersQuery(userid || '');
+
+    useEffect(() => {
+        refetch();
+    }, []);
 
     const preparedOrders = useMemo(() => {
         const reversedOrders = orders.slice();
         return reversedOrders.reverse();
     }, [orders]);
+
+    if (isFetching) return null;
 
     if (isSuccess && preparedOrders.length) {
         return (

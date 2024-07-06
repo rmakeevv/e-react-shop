@@ -4,6 +4,7 @@ import React from 'react';
 import { appRoutes } from '../../model/routes';
 import { selectBasketItems, selectBasketTotal } from '../../store/basketSlice';
 import { selectIsLogged } from '../../store/authSlice';
+import { formatPrice } from '../../utils/formatPrice';
 
 const renderLinkToCheckOut = () => {
     return (
@@ -31,6 +32,8 @@ export const BasketInfoPanel = () => {
     const basketItems = UseAppSelector(selectBasketItems);
     const total = UseAppSelector(selectBasketTotal);
 
+    const totalAmount = formatPrice(total);
+
     const isLogged = UseAppSelector(selectIsLogged);
     return (
         <div
@@ -40,7 +43,7 @@ export const BasketInfoPanel = () => {
             }
             style={{ border: '1px solid rgb(84 84 84 / 48%)' }}
         >
-            Сумма заказа: {total}
+            Сумма заказа: {totalAmount + ' rub'}
             <br />
             Выбрано товаров: {basketItems.length}
             {isLogged ? renderLinkToCheckOut() : renderLinkToAuth()}
