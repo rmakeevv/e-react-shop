@@ -1,8 +1,6 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/dist/query/react';
 import { baseApiUri } from '../../api/model';
 import { IProduct } from '../../model/product';
-import { RootState } from '../index';
-// import { RootState } from '../index';
 
 interface IOrderApi {
     _id: string;

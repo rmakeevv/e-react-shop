@@ -5,7 +5,8 @@ import { IProduct } from '../model/product';
 
 interface BasketState {
     value: {
-        items: Array<IBasketItem>;
+        items: IBasketItem[];
+        total: number;
         isOrdered?: boolean;
     };
 }
@@ -13,37 +14,45 @@ interface BasketState {
 const initialState: BasketState = {
     value: {
         items: [] as IBasketItem[],
+        total: 0,
     },
 };
 export const basketSlice = createSlice({
     name: 'basket',
     initialState,
     reducers: {
-        addItem: (state, action: PayloadAction<IProduct>) => {
-            state.value = {
-                items: [
-                    ...state.value.items,
-                    { ...action.payload, basketItemId: Date.now() },
-                ],
-            };
+        addItem: (
+            state,
+            action: PayloadAction<Pick<IProduct, '_id' | 'price'>>
+        ) => {
+            state.value.items = [
+                ...state.value.items,
+                { ...action.payload, basketItemId: Date.now() },
+            ];
+            state.value.total =
+                state.value.total + Number(action.payload.price);
         },
-        removeItem: (state, action) => {
-            state.value = {
-                items: [...state.value.items].filter(
-                    (item) => item.basketItemId !== action.payload
-                ),
-            };
+        removeItem: (
+            state,
+            action: PayloadAction<
+                Pick<IProduct, 'price'> & Pick<IBasketItem, 'basketItemId'>
+            >
+        ) => {
+            state.value.items = [...state.value.items].filter(
+                (item) => item.basketItemId !== action.payload.basketItemId
+            );
+            state.value.total =
+                state.value.total - Number(action.payload.price);
         },
         checkOut: (state) => {
             state.value = {
                 isOrdered: true,
                 items: [],
+                total: 0,
             };
         },
         deleteItems: (state) => {
-            state.value = {
-                items: [],
-            };
+            state.value.items = [];
         },
     },
 });
@@ -59,10 +68,6 @@ export const selectBasketQuantity = (state: RootState) =>
 export const selectBasketIsOrdered = (state: RootState) =>
     state.basket.value.isOrdered;
 
-export const selectBasketTotal = (state: RootState) =>
-    state.basket.value.items.reduce(
-        (accumulator, currentValue) => accumulator + Number(currentValue.price),
-        0
-    );
+export const selectBasketTotal = (state: RootState) => state.basket.value.total;
 
 export default basketSlice.reducer;

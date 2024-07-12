@@ -1,10 +1,10 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { getImage } from 'utils/getImage';
-import { IBasketItem } from '../../model/basket';
 import { appRoutes } from '../../model/routes';
+import { IProduct } from '../../model/product';
 
-type Props = IBasketItem;
+type Props = IProduct;
 
 export const CheckoutItem = ({ _id, name, brand, price, img }: Props) => {
     const image = getImage(img);

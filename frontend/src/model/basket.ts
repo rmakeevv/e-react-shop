@@ -1,5 +1,4 @@
-import { IProduct } from './product';
-
-export interface IBasketItem extends IProduct {
+export interface IBasketItem {
     basketItemId: number;
+    _id: string;
 }

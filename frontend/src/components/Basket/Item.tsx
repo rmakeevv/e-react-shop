@@ -4,9 +4,12 @@ import { removeItem } from 'store/basketSlice';
 import { useDispatch } from 'react-redux';
 import { getImage } from 'utils/getImage';
 import React from 'react';
-import { IBasketItem } from '../../model/basket';
 import { appRoutes } from '../../model/routes';
-interface Props extends IBasketItem {}
+import { IProduct } from '../../model/product';
+
+interface Props extends IProduct {
+    basketItemId: number;
+}
 
 export const BasketItem = ({
     _id,
@@ -37,7 +40,9 @@ export const BasketItem = ({
                 </div>
                 <Button
                     text={'Удалить'}
-                    onClick={() => dispatch(removeItem(basketItemId))}
+                    onClick={() =>
+                        dispatch(removeItem({ basketItemId, price }))
+                    }
                 />
             </div>
         </div>

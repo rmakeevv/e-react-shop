@@ -1,9 +1,10 @@
 import { UseAppSelector } from 'hooks';
 import { Link, useNavigate } from 'react-router-dom';
 import { CheckoutItem, CheckoutInfoPanel } from 'components';
-import React, { useEffect } from 'react';
+import React, { useEffect, useMemo } from 'react';
 import { selectBasketIsOrdered, selectBasketItems } from '../store/basketSlice';
 import { appRoutes } from '../model/routes';
+import { useGetAllProductsQuery } from '../store/rtk';
 
 const useProtectCheckoutRoute = () => {
     const basketItems = UseAppSelector(selectBasketItems);
@@ -21,6 +22,20 @@ const useProtectCheckoutRoute = () => {
 export const Checkout = () => {
     const isOrdered = UseAppSelector(selectBasketIsOrdered);
     const basketItems = UseAppSelector(selectBasketItems);
+
+    const { data: products = [] } = useGetAllProductsQuery({
+        category: '',
+        order: '',
+    });
+
+    const orderItems = useMemo(() => {
+        products.filter((product) => {
+            return basketItems.find(
+                (basketItem) => basketItem._id === product._id
+            );
+        });
+        return products;
+    }, [products, basketItems]);
 
     useProtectCheckoutRoute();
 
@@ -46,21 +61,25 @@ export const Checkout = () => {
         );
     }
 
-    return (
-        <div>
-            <div className={'container mx-auto p-8 text-white'}>
-                <h1 className={'text-white text-center'}>Ваш заказ</h1>
-                <div
-                    className={'flex items-center flex-col'}
-                    style={{ maxHeight: '30rem', overflowY: 'auto' }}
-                >
-                    {basketItems.map((item, key) => (
-                        <CheckoutItem key={key} {...item} />
-                    ))}
-                </div>
+    if (products.length > 0) {
+        return (
+            <div>
+                <div className={'container mx-auto p-8 text-white'}>
+                    <h1 className={'text-white text-center'}>Ваш заказ</h1>
+                    <div
+                        className={'flex items-center flex-col'}
+                        style={{ maxHeight: '30rem', overflowY: 'auto' }}
+                    >
+                        {orderItems.map((item, key) => (
+                            <CheckoutItem key={key} {...item} />
+                        ))}
+                    </div>
 
-                <CheckoutInfoPanel />
+                    <CheckoutInfoPanel />
+                </div>
             </div>
-        </div>
-    );
+        );
+    }
+
+    return null;
 };

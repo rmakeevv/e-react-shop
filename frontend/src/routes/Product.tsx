@@ -24,6 +24,10 @@ const renderProductProperty = (
     );
 };
 
+const ProductImage = ({ img }: Record<'img', string>) => {
+    return <img src={getImage(img)} alt={'product'} className={'w-64'} />;
+};
+
 export const Product = () => {
     const dispatch = useDispatch();
     const navigate = useNavigate();
@@ -40,11 +44,7 @@ export const Product = () => {
         return (
             <div className={'text-slate-200 flex items-stretch justify-center'}>
                 <div className="flex md:flex-row flex-col items-center rounded-md justify-center container p-4">
-                    <img
-                        src={getImage(data.img)}
-                        alt={'product'}
-                        className={'w-64'}
-                    />
+                    <ProductImage img={data.img} />
                     <div
                         className={
                             'grid items-center rounded-md justify-items-start px-8'

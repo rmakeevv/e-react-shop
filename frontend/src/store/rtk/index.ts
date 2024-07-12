@@ -10,7 +10,7 @@ export const productsApi = createApi({
     endpoints: (builder) => ({
         getAllProducts: builder.query<
             IProduct[],
-            { category: string; order: string }
+            { category?: string; order?: string }
         >({
             query: ({ category, order }) =>
                 category

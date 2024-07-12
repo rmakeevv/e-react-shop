@@ -54,7 +54,7 @@ export const Products = () => {
                         <ProductItem
                             key={key}
                             {...item}
-                            action={() => dispatch(addItem(item))}
+                            addItem={() => dispatch(addItem(item))}
                         />
                     ))
                 ) : (

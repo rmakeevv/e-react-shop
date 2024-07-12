@@ -7,7 +7,7 @@ import { IProduct } from '../model/product';
 import { appRoutes } from '../model/routes';
 
 interface Props extends IProduct {
-    action: () => void;
+    addItem: () => void;
 }
 
 export const ProductItem = ({
@@ -16,7 +16,7 @@ export const ProductItem = ({
     price,
     _id,
     img,
-    action,
+    addItem,
 }: Props) => {
     const picture = getImage(img);
     return (
@@ -45,7 +45,7 @@ export const ProductItem = ({
                 <div className={'flex flex-col gap-8'}>
                     <div className={'flex items-center justify-between gap-6'}>
                         <p className={'text-lg'}>{price + ' руб.'}</p>
-                        <Button onClick={action} text={'Добавить в корзину'} />
+                        <Button onClick={addItem} text={'Добавить в корзину'} />
                     </div>
                     <div
                         className={
