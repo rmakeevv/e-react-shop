@@ -4,6 +4,7 @@ import {
     checkOut,
     selectBasketItems,
     selectBasketQuantity,
+    selectBasketTotal,
 } from 'store/basketSlice';
 import { getDate } from 'utils/getDate';
 import React from 'react';
@@ -15,6 +16,7 @@ import { useAppSelector } from '../../store';
 export const CheckoutInfoPanel = () => {
     const basketItems = UseAppSelector(selectBasketItems);
     const basketQuantity = useAppSelector(selectBasketQuantity);
+    const total = useAppSelector(selectBasketTotal);
     const userId = UseAppSelector(selectUserId);
     const dispatch = useAppDispatch();
 
@@ -30,7 +32,7 @@ export const CheckoutInfoPanel = () => {
 
     return (
         <div className={'flex items-center justify-center'}>
-            <span> Итого {0}</span>
+            <span> Итого {total}</span>
             <span className={'m-4'}>Товаров в заказе: {basketQuantity}</span>
             <Button
                 className={'px-6 py-3 rounded-md text-black'}

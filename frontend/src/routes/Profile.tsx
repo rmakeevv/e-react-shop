@@ -1,14 +1,15 @@
 import userIcon from 'assets/images/UI/user-circle-icon-png.png';
 import { UseAppSelector } from 'hooks';
-import { Link, redirect } from 'react-router-dom';
+import { Link, redirect, useNavigate } from 'react-router-dom';
 import { Button } from 'components';
 import { useDispatch } from 'react-redux';
 import { logOut } from 'store/authSlice';
 import { deleteItems } from 'store/basketSlice';
-import React from 'react';
+import React, { useEffect } from 'react';
+import { appRoutes } from '../model/routes';
 export const loader = () => {
     if (!localStorage.getItem('token')) {
-        return redirect('/auth');
+        return redirect(appRoutes.auth);
     } else return null;
 };
 export const Profile = () => {
@@ -19,6 +20,12 @@ export const Profile = () => {
         dispatch(logOut());
         dispatch(deleteItems());
     };
+
+    const navigate = useNavigate();
+
+    useEffect(() => {
+        !auth.isLogged && navigate(appRoutes.auth);
+    }, [auth]);
 
     return (
         <div className={'justify-center text-white container mx-auto'}>

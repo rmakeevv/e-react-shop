@@ -16,7 +16,12 @@ interface IButtonProps {
  * @returns Возвращает стилизованную кнопку
  */
 
-export const Button = ({ text, onClick, type, className }: IButtonProps) => {
+export const Button = ({
+    text,
+    onClick,
+    type,
+    className = '',
+}: IButtonProps) => {
     return (
         <button
             type={type}

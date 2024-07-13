@@ -5,6 +5,7 @@ import React, { useEffect, useMemo } from 'react';
 import { selectBasketIsOrdered, selectBasketItems } from '../store/basketSlice';
 import { appRoutes } from '../model/routes';
 import { useGetAllProductsQuery } from '../store/rtk';
+import { ProductEntity } from '../model/product';
 
 const useProtectCheckoutRoute = () => {
     const basketItems = UseAppSelector(selectBasketItems);
@@ -29,12 +30,12 @@ export const Checkout = () => {
     });
 
     const orderItems = useMemo(() => {
-        products.filter((product) => {
-            return basketItems.find(
-                (basketItem) => basketItem._id === product._id
+        return basketItems.map((product) => {
+            return (
+                products.find((basketItem) => basketItem._id === product._id) ||
+                new ProductEntity()
             );
         });
-        return products;
     }, [products, basketItems]);
 
     useProtectCheckoutRoute();

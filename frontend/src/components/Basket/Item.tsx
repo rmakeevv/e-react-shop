@@ -7,7 +7,7 @@ import React from 'react';
 import { appRoutes } from '../../model/routes';
 import { IProduct } from '../../model/product';
 
-interface Props extends IProduct {
+interface BasketItemProps extends IProduct {
     basketItemId: number;
 }
 
@@ -18,7 +18,7 @@ export const BasketItem = ({
     price,
     basketItemId,
     img,
-}: Props) => {
+}: BasketItemProps) => {
     const image = getImage(img);
     const dispatch = useDispatch();
 
