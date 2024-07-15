@@ -76,7 +76,7 @@ export const Products = () => {
                 </h1>
                 <SortForm />
             </div>
-            <div className={'grid md:gap-4 text-white py-2'}>
+            <div className={'flex md:gap-4 text-white py-2'}>
                 {products.map((item, key) => (
                     <ProductItem
                         key={key}
