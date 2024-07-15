@@ -6,6 +6,7 @@ import React, { useMemo } from 'react';
 import { AppDispatch } from '../hooks';
 import { useGetAllProductsQuery } from '../store/rtk';
 import { useSearchParams } from 'react-router-dom';
+import { Button } from '../components';
 
 export const Products = () => {
     const dispatch: AppDispatch = useDispatch();
@@ -27,7 +28,36 @@ export const Products = () => {
         return initialValue;
     }, [searchParams]);
 
-    const { data } = useGetAllProductsQuery(params);
+    const {
+        data: products = [],
+        isError,
+        isFetching,
+        refetch,
+    } = useGetAllProductsQuery(params);
+
+    if (isFetching) {
+        return <></>;
+    }
+
+    if (isError) {
+        return (
+            <div className={'flex justify-center'}>
+                <div
+                    className={
+                        'text-neutral-50 text-lg text-center flex flex-col gap-4 items-center'
+                    }
+                >
+                    Ошибка
+                    <span>Попробуйте вернуться позже</span>
+                    <Button
+                        onClick={() => refetch()}
+                        className={'p-1 justify-self-center'}
+                        text={'Перезагрузить'}
+                    ></Button>
+                </div>
+            </div>
+        );
+    }
 
     return (
         <div
@@ -42,26 +72,18 @@ export const Products = () => {
                 style={{ border: '1px solid rgb(84 84 84 / 48%)' }}
             >
                 <h1 className={'text-white text-center'}>
-                    {data
-                        ? 'В наличии ' + data.length + ' товар(ов)'
-                        : 'Ошибка'}
+                    {'В наличии ' + products.length + ' товар(ов)'}
                 </h1>
                 <SortForm />
             </div>
             <div className={'grid md:gap-4 text-white py-2'}>
-                {data ? (
-                    data.map((item, key) => (
-                        <ProductItem
-                            key={key}
-                            {...item}
-                            addItem={() => dispatch(addItem(item))}
-                        />
-                    ))
-                ) : (
-                    <div className={'text-white p-4'}>
-                        <h1>Товары не найдены! Попробуйте позже.</h1>
-                    </div>
-                )}
+                {products.map((item, key) => (
+                    <ProductItem
+                        key={key}
+                        {...item}
+                        addItem={() => dispatch(addItem(item))}
+                    />
+                ))}
             </div>
         </div>
     );
