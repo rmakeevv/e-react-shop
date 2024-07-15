@@ -25,23 +25,20 @@ export const Header = () => {
             >
                 <div className={'flex items-center h-full p-2'}>
                     <Link
-                        className={'italic m-1 font-bold block px-2'}
+                        className={'italic font-bold block p-3'}
                         to={appRoutes.base}
                     >
                         TECHBUY
                     </Link>
                     <Link to={appRoutes.home}>
-                        <img src={logo} alt={'logo'} className={'w-6'} />
+                        <img src={logo} alt={'logo'} className={'w-7'} />
                     </Link>
-                    <Link
-                        to={appRoutes.products}
-                        className={'px-8 font-medium'}
-                    >
+                    <Link to={appRoutes.products} className={'px-7'}>
                         Каталог
                     </Link>
                 </div>
                 <div className={'flex items-center'}>
-                    <div className={'flex md:p-0 p-1 items-center'}>
+                    <div className={'flex items-center'}>
                         <Link
                             to={appRoutes.basket}
                             className={
@@ -76,7 +73,7 @@ export const Header = () => {
                             <Link
                                 to={appRoutes.auth}
                                 className={
-                                    'px-4 py-2 rounded-md text-center flex items-center'
+                                    'p-1 rounded-md text-center flex items-center'
                                 }
                             >
                                 <img src={userIcon} alt={'user'} width={'36'} />
