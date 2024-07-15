@@ -26,7 +26,7 @@ const LinkToProducts = () => {
 
 export const Main = () => {
     return (
-        <div className={'text-white p-8'} style={{ background: '#1a1a1a' }}>
+        <div className={'text-white p-2'} style={{ background: '#1a1a1a' }}>
             <div
                 className={
                     'flex flex-row-reverse flex-wrap rounded-md items-center container mx-auto justify-around gap-2'

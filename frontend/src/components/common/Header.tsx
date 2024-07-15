@@ -45,20 +45,21 @@ export const Header = () => {
                         <Link
                             to={appRoutes.basket}
                             className={
-                                'rounded-md py-1 px-2 flex bg-neutral-200 hover:text-black items-center w-15'
+                                'rounded-md py-1 px-2 flex hover:text-black items-center w-15'
                             }
                         >
                             <div>
                                 <img
                                     src={userCart}
                                     alt={'cart'}
-                                    width={'30px'}
-                                    height={'30px'}
+                                    width={'32px'}
+                                    height={'32px'}
+                                    className={'hue-rotate-30'}
                                 />
                             </div>
                             <div
                                 className={
-                                    'relative bottom-2 right-3 bg-neutral-800 rounded-full px-2 text-white text-sm font-medium'
+                                    'relative bottom-2 right-3 bg-neutral-300 rounded-full px-2 text-neutral-900 text-md'
                                 }
                             >
                                 {basketQuantity}
