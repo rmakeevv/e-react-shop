@@ -5,10 +5,11 @@ import userIcon from 'assets/images/UI/free-icon-user-149071.png';
 import userCart from 'assets/images/UI/free-icon-cart-8415432.png';
 import React from 'react';
 import { appRoutes } from '../../model/routes';
+import { selectBasketQuantity } from '../../store/basketSlice';
 
 export const Header = () => {
     const auth = UseAppSelector((state) => state.auth.value);
-    const basket = UseAppSelector((state) => state.basket.value);
+    const basketQuantity = UseAppSelector(selectBasketQuantity);
     return (
         <nav
             className={'text-white fixed w-full top-0'}
@@ -25,7 +26,7 @@ export const Header = () => {
                 <div className={'flex items-center h-full p-2'}>
                     <Link
                         className={'italic m-1 font-bold block px-2'}
-                        to={'/'}
+                        to={appRoutes.base}
                     >
                         TECHBUY
                     </Link>
@@ -60,7 +61,7 @@ export const Header = () => {
                                     'relative bottom-2 right-3 bg-neutral-800 rounded-full px-2 text-white text-sm font-medium'
                                 }
                             >
-                                {0 || basket.items.length}
+                                {basketQuantity}
                             </div>
                         </Link>
                         {auth.isLogged ? (
@@ -74,7 +75,7 @@ export const Header = () => {
                             <Link
                                 to={appRoutes.auth}
                                 className={
-                                    'md:px-8 py-3 rounded-md mx-2 text-center flex items-center'
+                                    'px-4 py-2 rounded-md text-center flex items-center'
                                 }
                             >
                                 <img src={userIcon} alt={'user'} width={'36'} />

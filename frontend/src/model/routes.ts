@@ -7,4 +7,5 @@ export enum appRoutes {
     product = '/products/:id',
     orders = '/orders/:userid',
     checkout = '/checkout/',
+    base = '/',
 }

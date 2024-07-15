@@ -1,4 +1,4 @@
-import laptop from '../assets/images/products/laptops/img.png';
+import img from '../assets/images/UI/img.png';
 import { Link } from 'react-router-dom';
 import React from 'react';
 import { appRoutes } from '../model/routes';
@@ -16,7 +16,7 @@ const LinkToProducts = () => {
         <Link
             to={appRoutes.products}
             className={
-                'font-bold text-neutral-50 bg-emerald-700 px-8 py-4 rounded-md hover:underline'
+                'font-bold text-neutral-50 bg-emerald-800 px-8 py-4 rounded-sm hover:underline'
             }
         >
             {GO_TO_PRODUCTS_TITLE}
@@ -32,13 +32,8 @@ export const Main = () => {
                     'flex py-8 md:px-8 rounded-md items-center container mx-auto justify-around flex-col gap-2'
                 }
             >
-                <img
-                    src={laptop}
-                    alt={'pc'}
-                    width={'320px'}
-                    className={'p-2'}
-                />
-                <h1 className={'md:text-5xl text-center font-bold text-xl'}>
+                <img src={img} alt={'pc'} width={'360px'} className={'p-2'} />
+                <h1 className={'md:text-5xl text-center tracking-wide text-lg'}>
                     <WELCOME_TITLE />
                 </h1>
                 <div className={'flex p-8'}>

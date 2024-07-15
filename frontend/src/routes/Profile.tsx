@@ -7,11 +7,13 @@ import { logOut } from 'store/authSlice';
 import { deleteItems } from 'store/basketSlice';
 import React, { useEffect } from 'react';
 import { appRoutes } from '../model/routes';
+
 export const loader = () => {
     if (!localStorage.getItem('token')) {
         return redirect(appRoutes.auth);
     } else return null;
 };
+
 export const Profile = () => {
     const auth = UseAppSelector((state) => state.auth.value);
     const dispatch = useDispatch();
