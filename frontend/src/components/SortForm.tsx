@@ -29,11 +29,7 @@ export const SortForm = () => {
                     onChange={(event) => submit(event.currentTarget.form)}
                 >
                     {Object.entries(CategoryEnum).map(([key, value]) => (
-                        <option
-                            key={key}
-                            value={key}
-                            defaultChecked={key === 'all'}
-                        >
+                        <option key={key} value={key}>
                             {value}
                         </option>
                     ))}

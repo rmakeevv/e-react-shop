@@ -71,9 +71,6 @@ export const Products = () => {
                 }
                 style={{ border: '1px solid rgb(84 84 84 / 48%)' }}
             >
-                <h1 className={'text-white text-center'}>
-                    {'В наличии ' + products.length + ' товар(ов)'}
-                </h1>
                 <SortForm />
             </div>
             <div className={'flex md:gap-4 text-white py-2'}>
