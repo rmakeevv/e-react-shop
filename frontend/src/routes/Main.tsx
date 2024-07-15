@@ -16,7 +16,7 @@ const LinkToProducts = () => {
         <Link
             to={appRoutes.products}
             className={
-                'font-bold text-neutral-50 bg-emerald-800 px-8 py-4 rounded-sm hover:underline'
+                'font-bold text-neutral-50 bg-emerald-800 px-6 py-3 rounded-sm hover:underline'
             }
         >
             {GO_TO_PRODUCTS_TITLE}
@@ -29,15 +29,17 @@ export const Main = () => {
         <div className={'text-white p-8'} style={{ background: '#1a1a1a' }}>
             <div
                 className={
-                    'flex py-8 md:px-8 rounded-md items-center container mx-auto justify-around flex-col gap-2'
+                    'flex flex-row-reverse flex-wrap rounded-md items-center container mx-auto justify-around gap-2'
                 }
             >
-                <img src={img} alt={'pc'} width={'360px'} className={'p-2'} />
-                <h1 className={'md:text-5xl text-center tracking-wide text-lg'}>
-                    <WELCOME_TITLE />
-                </h1>
-                <div className={'flex p-8'}>
-                    <LinkToProducts />
+                <img src={img} alt={'pc'} width={'600px'} />
+                <div className={'flex items-center flex-col flex-grow'}>
+                    <h1 className={'md:text-3xl text-center tracking-wide'}>
+                        <WELCOME_TITLE />
+                    </h1>
+                    <div className={'flex p-8'}>
+                        <LinkToProducts />
+                    </div>
                 </div>
             </div>
         </div>
