@@ -9,7 +9,8 @@ export const Root = () => {
     const dispatch = useAppDispatch();
 
     useEffect(() => {
-        dispatch(validateToken());
+        const token = localStorage.getItem('token');
+        token && dispatch(validateToken(token));
     });
 
     return (

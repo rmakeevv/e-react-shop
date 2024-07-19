@@ -20,8 +20,8 @@ const initialState = {
 
 export const validateToken = createAsyncThunk(
     'auth/validateToken',
-    async () => {
-        const response = await tokenService();
+    async (token: string) => {
+        const response = await tokenService(token);
         return response.data;
     }
 );
