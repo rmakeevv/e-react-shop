@@ -10,8 +10,6 @@ app.use(bodyParser.json());
 app.use(cors());
 app.use("/", router);
 
-app.use("/");
-
 app.use(express.static("public"));
 async function start() {
     await client
