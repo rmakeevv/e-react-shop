@@ -42,7 +42,7 @@ export const Header = () => {
                         <Link
                             to={appRoutes.basket}
                             className={
-                                'rounded-md py-1 px-2 flex hover:text-black items-center w-15'
+                                'rounded-md p-1 flex hover:text-black items-center w-15'
                             }
                         >
                             <div>
