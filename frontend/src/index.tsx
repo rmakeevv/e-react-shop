@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import { loader as rootLoader, Root } from './routes/Root';
+import { Root } from './routes/Root';
 import { Error } from 'Error';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import { Products } from 'routes/Products';
@@ -22,7 +22,6 @@ const router = createBrowserRouter([
         path: appRoutes.home,
         element: <Root />,
         errorElement: <Error />,
-        loader: rootLoader,
         children: [
             {
                 index: true,

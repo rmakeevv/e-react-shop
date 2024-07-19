@@ -1,5 +1,6 @@
-import { createSlice } from '@reduxjs/toolkit';
+import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import { RootState } from './index';
+import { tokenService } from '../services/token';
 
 interface AuthState {
     value: {
@@ -16,6 +17,14 @@ const initialState = {
         token: '',
     },
 } as AuthState;
+
+export const validateToken = createAsyncThunk(
+    'auth/validateToken',
+    async () => {
+        const response = await tokenService();
+        return response.data;
+    }
+);
 
 export const authSlice = createSlice({
     name: 'auth',
@@ -35,6 +44,11 @@ export const authSlice = createSlice({
                 token: '',
             };
         },
+    },
+    extraReducers: (builder) => {
+        builder.addCase(validateToken.fulfilled, (state, action) => {
+            state.value = { isLogged: true, userId: action.payload, token: '' };
+        });
     },
 });
 

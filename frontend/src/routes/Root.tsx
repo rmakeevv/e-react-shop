@@ -1,38 +1,15 @@
-import { Outlet, useLoaderData, useNavigation } from 'react-router-dom';
+import { Outlet, useNavigation } from 'react-router-dom';
 import { Header } from 'components';
 import React, { useEffect } from 'react';
-import { useDispatch } from 'react-redux';
-import { logIn } from 'store/authSlice';
+import { validateToken } from 'store/authSlice';
+import { useAppDispatch } from '../hooks';
 
-export const loader = async () => {
-    const token = localStorage.getItem('token') || null;
-    const userId = localStorage.getItem('userId') || null;
-    if (!userId) {
-        return null;
-    }
-
-    try {
-        await fetch(process.env.REACT_APP_API_URI + `/users/auth`, {
-            headers: {
-                authorization: 'Bearer: ' + localStorage.getItem('token'),
-            },
-        });
-        return { token, userId };
-    } catch (error) {
-        console.error(error);
-    }
-    return null;
-};
 export const Root = () => {
     const navigation = useNavigation();
-    const data = useLoaderData();
-    const dispatch = useDispatch();
+    const dispatch = useAppDispatch();
 
     useEffect(() => {
-        if (!data) {
-            return;
-        }
-        dispatch(logIn(data));
+        dispatch(validateToken());
     });
 
     return (
