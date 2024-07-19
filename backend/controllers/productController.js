@@ -16,7 +16,7 @@ async function addProduct(req, res) {
 async function getProducts(req, res) {
   const result = await myColl.find();
   const data = await result.toArray();
-  res.send(data);
+  res.send(data).status(200);
 }
 
 async function deleteProducts(req, res) {
@@ -27,8 +27,10 @@ async function deleteProducts(req, res) {
 async function getOneProduct(req, res) {
   try {
     const { _id } = await req.params;
-    const product = await myColl.findOne({ _id: new ObjectId(_id) });
-    res.send(product);
+    const query = { _id: new ObjectId(_id) };
+    const product = await myColl.findOne(query);
+    if (!product) res.status(404).send("Product not found");
+    else res.send(product);
   } catch (e) {
     console.warn(e.message);
   }
