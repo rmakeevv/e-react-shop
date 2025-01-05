@@ -23,12 +23,14 @@ export const Header = () => {
                     'container flex items-center justify-between mx-auto '
                 }
             >
-                <div className={'flex items-center h-full p-2'}>
+                <div className={'flex items-center p-2'}>
                     <Link
-                        className={'italic font-bold block p-3'}
+                        className={
+                            'font-black text-md block tracking-wider p-3'
+                        }
                         to={appRoutes.base}
                     >
-                        TECHBUY
+                        TECHBUY.CO
                     </Link>
                     <Link to={appRoutes.home}>
                         <img src={logo} alt={'logo'} className={'w-7'} />
